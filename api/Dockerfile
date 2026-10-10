@@ -25,7 +25,8 @@ RUN mkdir -p /app/static/agent && \
 # Runtime stage
 FROM alpine:latest
 
-RUN apk --no-cache add ca-certificates tzdata
+RUN apk upgrade --no-cache && \ 
+    apk --no-cache add ca-certificates tzdata
 
 WORKDIR /app
 
