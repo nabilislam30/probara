@@ -81,10 +81,11 @@ jobs:
       - name: Scan image with Grype
         uses: anchore/scan-action@27805bf3b4e84b4a5c980df22ed233c00390a439
         with:
-          image-ref: ${{ env.ECR_REGISTRY }}/${{ matrix.repository }}:${{ env.IMAGE_TAG }}
+          image: ${{ env.ECR_REGISTRY }}/${{ matrix.repository }}:${{ env.IMAGE_TAG }}
           fail-build: true
           severity-cutoff: high
-          ignore-unfixed: true
+          only-fixed: true
+          output-format: table
 
       - name: Push image
         run: |
