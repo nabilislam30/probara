@@ -16,14 +16,15 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app/worker ./wor
 # Runtime stage
 FROM alpine:latest
 
-RUN apk --no-cache add \
+RUN apk upgrade --no-cache && \
+    apk add --no-cache \
     ca-certificates \
     tzdata \
     chromium \
     nss \
     freetype \
     harfbuzz \
-    ttf-freefont
+    ttf-freefont \
 
 WORKDIR /app
 
