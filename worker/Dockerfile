@@ -24,7 +24,7 @@ RUN apk upgrade --no-cache && \
     nss \
     freetype \
     harfbuzz \
-    ttf-freefont \
+    ttf-freefont
 
 WORKDIR /app
 
