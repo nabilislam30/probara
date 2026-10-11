@@ -64,7 +64,7 @@ jobs:
             repository: probara-frontend
             dockerfile: ./web/Dockerfile
             context: ./web
-            severity: high
+            severity: critical
 
     steps:
       - name: Checkout
