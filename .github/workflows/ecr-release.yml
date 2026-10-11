@@ -28,36 +28,43 @@ jobs:
             repository: probara-api
             dockerfile: ./api/Dockerfile
             context: .
+            severity: high
 
           - name: scheduler
             repository: probara-scheduler
             dockerfile: ./scheduler/Dockerfile
             context: .
+            severity: high
 
           - name: worker
             repository: probara-worker
             dockerfile: ./worker/Dockerfile
             context: .
+            severity: high
 
           - name: alerter
             repository: probara-alerter
             dockerfile: ./alerter/Dockerfile
             context: .
+            severity: high
 
           - name: status-page
             repository: probara-status-page
             dockerfile: ./status-page/Dockerfile
             context: .
+            severity: high
 
           - name: migrations
             repository: probara-migrations
             dockerfile: ./Dockerfile.migrations
             context: .
+            severity: high
 
           - name: frontend
             repository: probara-frontend
             dockerfile: ./web/Dockerfile
             context: ./web
+            severity: high
 
     steps:
       - name: Checkout
@@ -84,7 +91,7 @@ jobs:
         with:
           image: ${{ env.ECR_REGISTRY }}/${{ matrix.repository }}:${{ env.IMAGE_TAG }}
           fail-build: true
-          severity-cutoff: high
+          severity-cutoff: ${{ matrix.severity }}
           only-fixed: true
           output-format: table
 
